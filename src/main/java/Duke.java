@@ -1,55 +1,43 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Duke {
-    public static RequestList list = new RequestList();
-
-    public static void printHorizonLine(){
-        System.out.println(" ____________________________________________________________");
-    }
-    public static void printHello(){
-        printHorizonLine();
+    public static void main(String[] args) {
+        String line;
+        ArrayList<Task> tasks = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        final String HORIZONTAL_LINE = " ____________________________________________________________";
+        System.out.println(HORIZONTAL_LINE);
         System.out.println("  Hello! I'm Duke");
         System.out.println("  What can I do for you?");
-        printHorizonLine();
-    }
-    public static void printGoodBye(){
-        System.out.println("  Bye. Hope to see you again soon!");
-    }
+        System.out.println(HORIZONTAL_LINE);
+        line = sc.nextLine();
+        while (!line.equals("bye")){
+            if(line.equals("list")){
+                System.out.println(HORIZONTAL_LINE);
+                for (int i = 0; i < tasks.size(); i++) {
 
-    public static void printRequestList(){
-        for (int i = 0; i < list.getSize(); i++) {
-            Request t = list.getRequest(i);
-            System.out.println("  " + (i + 1) + ". " + t.getTitle());
-        }
-    }
-
-    public static void addRequest(String title){
-        list.addRequest(new Request(title));
-    }
-
-    public static void main(String[] args) {
-        Scanner k = new Scanner(System.in);
-        String input;
-        printHello();
-        while(true){
-            input = k.nextLine();
-            if(input.toLowerCase().equals("bye")){
-                break;
-            } else if(input.toLowerCase().equals("list")){
-                printHorizonLine();
-                printRequestList();
-                printHorizonLine();
-                continue;
-            }else {
-                addRequest(input);
-                printHorizonLine();
-                System.out.println("  Added : " + input);
-                printHorizonLine();
-                continue;
+                    System.out.println((i+1)+":"+"["+tasks.get(i).getStatusIcon()+"] "+tasks.get(i).description);
+                }
+                System.out.println(HORIZONTAL_LINE);
+            }else if(line.startsWith("done")){
+                System.out.println(HORIZONTAL_LINE);
+                int taskNumberCompleted = Integer.parseInt(line.replaceAll("\\D+",""))-1;
+                tasks.set(taskNumberCompleted,tasks.get(taskNumberCompleted).completeTask());
+                System.out.println(" Nice! I've marked this task as done:");
+                System.out.println(" " + "["+tasks.get(taskNumberCompleted).getStatusIcon()+"] "+tasks.get(taskNumberCompleted).description);
+                System.out.println(HORIZONTAL_LINE);
+                System.out.println();
+            } else{
+                System.out.println(HORIZONTAL_LINE);
+                System.out.println("  added :" + line);
+                tasks.add(new Task(line));
+                System.out.println(HORIZONTAL_LINE);
+                System.out.println();
             }
+            line = sc.nextLine();
         }
-        printHorizonLine();
-        printGoodBye();
-        printHorizonLine();
+        System.out.println(HORIZONTAL_LINE);
+        System.out.println(" Bye. Hope to see you again soon!");
+        System.out.println(HORIZONTAL_LINE);
     }
 }
