@@ -22,7 +22,7 @@ public class Duke {
             }else if(line.startsWith("done")){
                 System.out.println(HORIZONTAL_LINE);
                 int taskNumberCompleted = Integer.parseInt(line.replaceAll("\\D+",""))-1;
-                tasks.set(taskNumberCompleted,tasks.get(taskNumberCompleted).completeTask());
+                tasks.get(taskNumberCompleted).completeTask();
                 System.out.println("  Nice! I've marked this task as done:");
                 System.out.println("   "+":"+tasks.get(taskNumberCompleted));
                 System.out.println(HORIZONTAL_LINE);
