@@ -1,10 +1,11 @@
 public class Deadline extends Task {
-
+    public static int DEADLINE_LENGTH = 9;
+    public static int BY_LENGTH = 4;
     protected String by;
 
     public Deadline(String line) {
-        super(line.substring(9,(line.indexOf("/")-1)));
-        this.by = line.substring((line.indexOf("/")+4));
+        super(line.substring(DEADLINE_LENGTH,(line.indexOf("/")-1)));
+        this.by = line.substring((line.indexOf("/") + BY_LENGTH));
     }
 
     public void setBy(String by) {
