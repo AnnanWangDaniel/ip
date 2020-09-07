@@ -30,9 +30,9 @@ public class Duke {
                     System.out.println(HORIZONTAL_LINE);
                     System.out.println();
                 } else if(line.startsWith("todo")){
+                    tasks.add(new ToDo(line));
                     System.out.println(HORIZONTAL_LINE);
                     System.out.println("  Got it. I've added this task:");
-                    tasks.add(new ToDo(line));
                     System.out.println("  " + new ToDo(line));
                     System.out.println("  Now you have " + tasks.size() + " tasks in the list.");
                     System.out.println(HORIZONTAL_LINE);
@@ -62,11 +62,11 @@ public class Duke {
                 }
             } catch (StringIndexOutOfBoundsException e) {
                 System.out.println(HORIZONTAL_LINE);
-                System.out.println("The task you input has missing fields!");
+                System.out.println("  The task you input has missing fields!");
                 System.out.println(HORIZONTAL_LINE);
             } catch (Exception e) {
                 System.out.println(HORIZONTAL_LINE);
-                System.out.println("Something went wrong!");
+                System.out.println("  Something went wrong!");
                 System.out.println(HORIZONTAL_LINE);
             }
             line = sc.nextLine();
