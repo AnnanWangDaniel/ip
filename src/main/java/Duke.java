@@ -37,16 +37,16 @@ public class Duke {
                     System.out.println("  Now you have " + tasks.size() + " tasks in the list.");
                     System.out.println(HORIZONTAL_LINE);
                 } else if(line.startsWith("deadline")){
+                    tasks.add(new Deadline(line));
                     System.out.println(HORIZONTAL_LINE);
                     System.out.println("  Got it. I've added this task:");
-                    tasks.add(new Deadline(line));
                     System.out.println("  " + new Deadline(line));
                     System.out.println("  Now you have " + tasks.size() + " tasks in the list.");
                     System.out.println(HORIZONTAL_LINE);
                 } else if(line.startsWith("event")){
-                    System.out.println(HORIZONTAL_LINE);
-                    System.out.println("  Got it. I've added this task:");
                     tasks.add(new Event(line));
+                    System.out.println(HORIZONTAL_LINE);
+                    System.out.println("  Got it. I've added this task:");                    
                     System.out.println("  " + new Event(line));
                     System.out.println("  Now you have " + tasks.size() + " tasks in the list.");
                     System.out.println(HORIZONTAL_LINE);
