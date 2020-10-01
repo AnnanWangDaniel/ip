@@ -15,7 +15,6 @@ public class Duke {
     private static ImportExportFileHandler fileHandler = new ImportExportFileHandler(tasks);
 
     public static void main(String[] args) {
-<<<<<<< HEAD
         printLogo();
         greet();
         echo();
@@ -49,35 +48,24 @@ public class Duke {
     }
 
     private static void executeCommand(String userInputSentence) {
-        boolean isEqualToTERMIATION_SIGNAL = userInputSentence.toLowerCase().equals(Commands.TERMINATION_SIGNAL);
-        boolean isEqualToLIST_PRINT_COMMAND = userInputSentence.toLowerCase().equals(Commands.LIST_PRINT_COMMAND);
-        boolean isEqualToSET_TASK_DONE_COMMAND = userInputSentence.length() >= Commands.SET_TASK_DONE_COMMAND.length() &&
-                    userInputSentence.substring(0, Commands.SET_TASK_DONE_COMMAND.length()).equals(Commands.SET_TASK_DONE_COMMAND);
-        boolean isEqualToDELETE_COMMAND = userInputSentence.startsWith(Commands.DELETE_COMMAND);
+        boolean isEqualToTERMIATION = userInputSentence.toLowerCase().equals(Commands.TERMINATION);
+        boolean isEqualToLIST_PRINT = userInputSentence.toLowerCase().equals(Commands.LIST_PRINT);
+        boolean isEqualToSET_TASK_DONE = userInputSentence.length() >= Commands.SET_TASK_DONE.length() &&
+                    userInputSentence.substring(0, Commands.SET_TASK_DONE_COMMAND.length()).equals(Commands.SET_TASK_DONE);
+        boolean isEqualToDELETE = userInputSentence.startsWith(Commands.DELETE);
 
-        if (isEqualToTERMIATION_SIGNAL){
+        if (isEqualToTERMIATION){
             exit();
-        } else if (isEqualToLIST_PRINT_COMMAND) {
+        } else if (isEqualToLIST_PRINT) {
             printTaskList();
-        } else if (isEqualToSET_TASK_DONE_COMMAND) {
+        } else if (isEqualToSET_TASK_DONE) {
             String[] splitCommand = userInputSentence.split(" ");
             Integer setTaskId = Integer.valueOf(splitCommand[1]);
 
-            setTaskDone(setTaskId - 1); // -1 because array's index starts from 0
-        } else if (isEqualToDELETE_COMMAND) {
+            setTaskDone(setTaskId - 1);
+        } else if (isEqualToDELETE) {
             DeleteTask(userInputSentence);
-        } else {
-            try {
-                executeTaskAddingCommand(userInputSentence);
-            } catch (EmptyContentForTodoCommandException e) {
-                System.out.println(SEPARATOR);
-                System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
-                System.out.println(SEPARATOR);
-            } catch (UnknownCommandException e) {
-                System.out.println(SEPARATOR);
-                System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-                System.out.println(SEPARATOR);
-            }
+        } 
         }
     }
 
@@ -149,80 +137,12 @@ public class Duke {
                     System.out.println("Please specify the task type.");
                     System.out.println(SEPARATOR);
                 }
-=======
-        String line;
-        ArrayList<Task> tasks = new ArrayList<>();
-        Scanner sc = new Scanner(System.in);
-        final String HORIZONTAL_LINE = " ____________________________________________________________";
-        System.out.println(HORIZONTAL_LINE);
-        System.out.println("  Hello! I'm Duke");
-        System.out.println("  What can I do for you?");
-        System.out.println(HORIZONTAL_LINE);
-        line = sc.nextLine();
-        while (!line.equals("bye")){
-            try {
-                if(line.equals("list")){
-                    System.out.println(HORIZONTAL_LINE);
-                    System.out.println("  Here are the tasks in your list:");
-                    for (int i = 0; i < tasks.size(); i++) {
-                        System.out.println("  " + (i+1) +":" + tasks.get(i));
-                    }
-                    System.out.println(HORIZONTAL_LINE);
-                }else if(line.startsWith("done")){
-                    System.out.println(HORIZONTAL_LINE);
-                    int taskNumberCompleted = Integer.parseInt(line.replaceAll("\\D+",""))-1;
-                    tasks.get(taskNumberCompleted).completeTask();
-                    System.out.println("  Nice! I've marked this task as done:");
-                    System.out.println("   "+":"+tasks.get(taskNumberCompleted));
-                    System.out.println(HORIZONTAL_LINE);
-                    System.out.println();
-                } else if(line.startsWith("todo")){
-                    System.out.println(HORIZONTAL_LINE);
-                    System.out.println("  Got it. I've added this task:");
-                    tasks.add(new ToDo(line));
-                    System.out.println("  " + new ToDo(line));
-                    System.out.println("  Now you have " + tasks.size() + " tasks in the list.");
-                    System.out.println(HORIZONTAL_LINE);
-                } else if(line.startsWith("deadline")){
-                    System.out.println(HORIZONTAL_LINE);
-                    System.out.println("  Got it. I've added this task:");
-                    tasks.add(new Deadline(line));
-                    System.out.println("  " + new Deadline(line));
-                    System.out.println("  Now you have " + tasks.size() + " tasks in the list.");
-                    System.out.println(HORIZONTAL_LINE);
-                } else if(line.startsWith("event")){
-                    System.out.println(HORIZONTAL_LINE);
-                    System.out.println("  Got it. I've added this task:");
-                    tasks.add(new Event(line));
-                    System.out.println("  " + new Event(line));
-                    System.out.println("  Now you have " + tasks.size() + " tasks in the list.");
-                    System.out.println(HORIZONTAL_LINE);
-                } else if (line.isEmpty()) {
-                    System.out.println(HORIZONTAL_LINE);
-                    System.out.println("  ☹ OOPS!!! The description of a task cannot be empty.");
-                    System.out.println(HORIZONTAL_LINE);
-                } else {
-                    System.out.println(HORIZONTAL_LINE);
-                    System.out.println("  ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-                    System.out.println(HORIZONTAL_LINE);
-                    System.out.println();
-                }
-            } catch (StringIndexOutOfBoundsException e) {
-                System.out.println(HORIZONTAL_LINE);
-                System.out.println("The task you input has missing fields!");
-                System.out.println(HORIZONTAL_LINE);
-            } catch (Exception e) {
-                System.out.println(HORIZONTAL_LINE);
-                System.out.println("Something went wrong!");
-                System.out.println(HORIZONTAL_LINE);
->>>>>>> parent of 250902a... coding standard
             }
         } catch (IndexOutOfBoundsException e) {
             System.out.println(SEPARATOR);
             System.out.println("Wrong syntax for commands.");
             System.out.println(SEPARATOR);
         }
-<<<<<<< HEAD
 
         fileHandler.UpdateFile(tasks);
     }
@@ -281,10 +201,5 @@ public class Duke {
         }
 
         System.out.println(SEPARATOR);
-=======
-        System.out.println(HORIZONTAL_LINE);
-        System.out.println("  Bye. Hope to see you again soon!");
-        System.out.println(HORIZONTAL_LINE);
->>>>>>> parent of 250902a... coding standard
     }
 }
