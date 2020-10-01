@@ -1,3 +1,8 @@
+import tasks.Deadline;
+import tasks.Event;
+import tasks.Todo;
+import tasks.Task;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -31,8 +36,8 @@ public class Duke {
                 } else if (line.startsWith("todo")) {
                     printHorizontalLine();
                     System.out.println("  Got it. I've added this task:");
-                    tasks.add(new ToDo(line));
-                    System.out.println("  " + new ToDo(line));
+                    tasks.add(new Todo(line));
+                    System.out.println("  " + new Todo(line));
                     System.out.println("  Now you have " + tasks.size() + " tasks in the list.");
                     printHorizontalLine();
                 } else if (line.startsWith("deadline")) {
