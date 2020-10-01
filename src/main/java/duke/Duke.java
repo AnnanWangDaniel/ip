@@ -5,17 +5,30 @@ import tasks.Task;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.FileWriter;
+import java.io.FileNotFoundException;
 
 public class Duke {
     public static void main(String[] args) {
         String line;
         ArrayList<Task> tasks = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
+
+        FileInputStream inputFile = new FileInputStream("data/duke_input.txt");
+        Scanner scFile =new Scanner(inputFile);
+        FileWriter writer = new FileWriter("data/duke.txt");
         printHorizontalLine();
         System.out.println("  Hello! I'm Duke");
         System.out.println("  What can I do for you?");
         printHorizontalLine();
-        line = sc.nextLine();
+        if (scFile.hasNextLine()){
+            line = scFile.nextLine();
+        }
+        else {
+            line = sc.nextLine();
+        }
         while (!line.equals("bye")) {
             try {
                 if (line.equals("list")) {
@@ -89,10 +102,41 @@ public class Duke {
                 printHorizontalLine();
             } catch (Exception e) {
                 printHorizontalLine();
-                System.out.println("Something went wrong!");
+                if(line.equals("todo")) {
+                    System.out.println(" OOPS!!! The description of a todo cannot be empty.");
+                } else if(line.equals("deadline")) {
+                    System.out.println(" OOPS!!! The description of a deadline cannot be empty.");
+                } else if(line.equals("event")) {
+                    System.out.println(" OOPS!!! The description of a event cannot be empty.");
+                } else {
+                    System.out.println("Whoops, something went wrong!");
+                }
                 printHorizontalLine();
             }
-            line = sc.nextLine();
+            if (scFile.hasNextLine()){
+                line = scFile.nextLine();
+            }
+            else {
+                line = sc.nextLine();
+            }
+        }
+        try {
+            for (int i = 0; i < tasks.size(); i++) {
+                if(tasks.get(i) instanceof Deadline){
+                    writer.write("deadline " +tasks.get(i).getDescription());
+                }
+                if(tasks.get(i) instanceof Event){
+                    writer.write("event " +tasks.get(i).getDescription());
+                }
+                if(tasks.get(i) instanceof Todo){
+                    writer.write("todo " +tasks.get(i).getDescription());
+                }
+            }
+        }
+        catch (IOException e) {
+            printHorizontalLine();
+            System.out.println("Failed to save tasklist.");
+            printHorizontalLine();
         }
         printHorizontalLine();
         System.out.println("  Bye. Hope to see you again soon!");
