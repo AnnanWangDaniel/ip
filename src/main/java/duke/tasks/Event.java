@@ -1,23 +1,17 @@
-package tasks;
+/**
+ * class event extends Task
+ */
+public class Event extends Task {
 
-public class Event extends Task{
-	protected String period;
+    protected String at;
 
-	public Event(String description, String period) {
-		super(description);
-		this.period = period;
-	}
+    public Event(String description, String at) {
+        super(description);
+        this.at = at;
+    }
 
-	public String getPeriod() {
-		return period;
-	}
-
-	public void setPeriod(String period) {
-		this.period = period;
-	}
-
-	@Override
-	public String toString() {
-		return "[E]" + super.toString() + String.format(" (at: %s)",this.getPeriod());
-	}
+    @Override
+    public String toString() {
+        return "[E]" + super.toString() + " (at: " + at + ")";
+    }
 }
