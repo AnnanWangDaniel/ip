@@ -192,10 +192,10 @@ public class Duke {
                 line = "todo " + line.substring(7);
             }
             else if(line.substring(1,2).equals("D")){
-                line = "deadline " + line.substring(7,(line.indexOf("(") )) + "/ by" + line.substring(line.indexOf(":")+2,line.indexOf(")"));//manipulate deadline statement
+                line = "deadline " + line.substring(7,(line.indexOf("(") )) + "/ by" + line.substring(line.indexOf(":")+2,line.indexOf(")"));
             }
             else if(line.substring(1,2).equals("E")){
-                line = "event " + line.substring(7,(line.indexOf("(") )) + "/ by" + line.substring(line.indexOf(":")+2,line.indexOf(")")); //manipulate event statement
+                line = "event " + line.substring(7,(line.indexOf("(") )) + "/ by" + line.substring(line.indexOf(":")+2,line.indexOf(")"));
             }
         }
         else {
