@@ -11,10 +11,12 @@ import tasks.Task;
 
 public class UI {
 
+    //print the horizontal line to seperate sections
     public static void printHorizontalLine() {
         System.out.println(" ____________________________________________________________");
     }
 
+    //print the greeting message
     public static void greet(){
         printHorizontalLine();
         System.out.println("  Hello! I'm Duke");
@@ -22,6 +24,7 @@ public class UI {
         printHorizontalLine();
     }
 
+    //print the list of tasks
     public static void printTaskList(ArrayList<Task> tasks){
         printHorizontalLine();
         System.out.println("  Here are the tasks in your list:");
@@ -33,6 +36,7 @@ public class UI {
         printHorizontalLine();
     }
 
+    //print message when user set a task statues to done
     public static void messageDone(ArrayList<Task> tasks, int taskCompletedId){
         printHorizontalLine();
         System.out.println("  Nice! I've marked this task as done:");
@@ -41,6 +45,7 @@ public class UI {
         System.out.println();
     }
 
+    //print message when a todo task is added
     public static void messageTodo(ArrayList<Task> tasks, Todo todo){
         printHorizontalLine();
         System.out.println("  Got it. I've added this task:");
@@ -49,6 +54,7 @@ public class UI {
         printHorizontalLine();
     }
 
+    //print message when a deadline task is added
     public static void messageDeadline(ArrayList<Task> tasks, Deadline ddl){
         printHorizontalLine();
         System.out.println("  Got it. I've added this task:");
@@ -57,6 +63,7 @@ public class UI {
         printHorizontalLine();
     }
 
+    //print message when a event task is added
     public static void messageEvent(ArrayList<Task> tasks, Event event){
         printHorizontalLine();
         System.out.println("  Got it. I've added this task:");                
@@ -65,6 +72,7 @@ public class UI {
         printHorizontalLine();
     }
 
+    //print message when a task is deleted
     public static void messageDelete(ArrayList<Task> tasks, int taskdeletedId){
         printHorizontalLine();
         System.out.println("  Noted. I've removed this task:  ");
@@ -74,18 +82,21 @@ public class UI {
         printHorizontalLine();
     }
 
+    //print message when the user command is empty
     public static void messageEmptyCommand(){
         printHorizontalLine();
         System.out.println("  OOPS!!! The description of a task cannot be empty.");
         printHorizontalLine();
     }
 
+    //print message when saving succeed
     public static void messageSaved(){
         printHorizontalLine();
         System.out.println("  Tasks saved!");
         printHorizontalLine();
     }
 
+    //print the list of matched messages
     public static void messageFind(ArrayList<Task> tasks, String line){
         printHorizontalLine();
         System.out.println("Here are the matching tasks in your list:\n");
@@ -119,6 +130,7 @@ public class UI {
         System.out.println();
     }
 
+    //print the message when exit
     public static void messageExit(){
         printHorizontalLine();
         System.out.println("  Bye. Hope to see you again soon!");

@@ -52,7 +52,7 @@ public class Duke {
                     UI.printTaskList(tasks);
                 } 
                 else if (line.startsWith("done")) {
-                    int taskCompletedId = Integer.parseInt(line.replaceAll("\\D+", "")) - 1;
+                    int taskCompletedId = Integer.parseInt(line.replaceAll("\\D+", "")) - 1;//get the changed task ID
                     tasks.set(taskCompletedId, tasks.get(taskCompletedId).completeTask());
                     UI.messageDone(tasks, taskCompletedId);
                 } 
@@ -69,11 +69,11 @@ public class Duke {
                     tasks.add(ddl);
                     UI.messageDeadline(tasks, ddl);
                 } else if (line.startsWith("event")) {
-                    String descriptionOfevent;
+                    String descriptionOfEvent;
                     String at;
-                    descriptionOfevent = line.substring(6, (line.indexOf("/") - 1));
+                    descriptionOfEvent = line.substring(6, (line.indexOf("/") - 1));
                     at = line.substring((line.indexOf("/") + 4));
-                    Event event = new Event(descriptionOfevent, at);
+                    Event event = new Event(descriptionOfEvent, at);
                     tasks.add(event);
                     UI.messageEvent(tasks, event);
                 } else if (line.startsWith("delete")){
@@ -111,6 +111,7 @@ public class Duke {
         UI.messageExit();
     }
 
+    //write tasks to the output file
     public static void saveTasks(ArrayList<Task> tasks, File data) {
         try {
             FileWriter writer = new FileWriter(data,false); //to not overwrite the file, set to true.
@@ -125,6 +126,7 @@ public class Duke {
         }
     }
 
+    //add get input from storage file or user input line
     public static String getInput(){
         if(in.hasNextLine()){
             line = in.nextLine();
