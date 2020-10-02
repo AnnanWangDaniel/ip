@@ -63,7 +63,7 @@ Example output:
 ```
 ____________________________________________________________
 Got it. I've added this task: 
- [D][✘] return book (2020-10-08)
+ [D][✘] return book (by: 2020-10-08)
 Now you have 2 tasks in the list.
 ____________________________________________________________
 ```
@@ -85,7 +85,7 @@ Example output:
 ```
 ____________________________________________________________
 Got it. I've added this task: 
- [E][✘] read book (2020-10-08)
+ [E][✘] read book (at: 2020-10-08)
 Now you have 3 tasks in the list.
 ____________________________________________________________
 ```
