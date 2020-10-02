@@ -1,7 +1,9 @@
-package tasks;
 /**
  * Task Class
+ * parent Class of all kinds of tasks
  */
+package tasks;
+
 public class Task {
     protected String description;
     protected boolean isDone;

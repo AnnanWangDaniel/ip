@@ -1,3 +1,7 @@
+/**
+ * The main function of the app.
+ * Read in user commands and maitaion the program loop.
+ */
 import tasks.Deadline;
 import tasks.Event;
 import tasks.Todo;

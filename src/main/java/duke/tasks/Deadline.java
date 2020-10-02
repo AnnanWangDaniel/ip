@@ -1,7 +1,8 @@
-package tasks;
 /**
- * class deadline extends Task
+ * class deadline a sub-class of class Task
  */
+package tasks;
+
 public class Deadline extends Task {
 
     protected String by;

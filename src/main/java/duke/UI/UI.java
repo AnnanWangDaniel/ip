@@ -1,3 +1,7 @@
+/**
+ * The UI part of program.
+ * Manages outputs contents to users.
+ */
 package UI;
 import java.util.ArrayList;
 import tasks.Deadline;
