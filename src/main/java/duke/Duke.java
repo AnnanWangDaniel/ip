@@ -97,15 +97,15 @@ public class Duke {
                     printHorizontalLine();
                 } else if (line.startsWith("delete")){
                     printHorizontalLine();
-                    System.out.println("  Noted. I've removed this task:  ");
                     int taskNumberdeleted = Integer.parseInt(line.replaceAll("\\D+", "")) - 1;
                     System.out.println("   " + tasks.get(taskNumberdeleted).toString());
                     tasks.remove(taskNumberdeleted);
+                    System.out.println("  Noted. I've removed this task:  ");
                     System.out.println("  Now you have " + tasks.size() + " tasks in the list.");
                     printHorizontalLine();
                 } else if (line.isEmpty()) {
                     printHorizontalLine();
-                    System.out.println("  ☹ OOPS!!! The description of a task cannot be empty.");
+                    System.out.println("  OOPS!!! The description of a task cannot be empty.");
                     printHorizontalLine();
                 } else if (line.equals("save")) {
                     printHorizontalLine();
@@ -127,7 +127,7 @@ public class Duke {
                 }
                 else {
                     printHorizontalLine();
-                    System.out.println("  ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    System.out.println("  OOPS!!! I'm sorry, but I don't know what that means :-(");
                     printHorizontalLine();
                     System.out.println();
                 }
