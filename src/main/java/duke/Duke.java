@@ -20,7 +20,7 @@ import java.io.FileOutputStream;
 public class Duke {
     private static String line;
     private static ArrayList<Task> tasks = new ArrayList<>();
-    private static File data = new File("data/duke.txt");
+    private static File data = new File("duke.txt");
     protected static FileOutputStream outputFile;
     protected static Scanner sc = new Scanner(System.in);
     public static FileInputStream inputFile;
