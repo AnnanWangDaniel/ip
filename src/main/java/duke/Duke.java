@@ -1,3 +1,4 @@
+
 /**
  * The main function of the app.
  * Read in user commands and maitaion the program loop.
@@ -27,11 +28,12 @@ public class Duke {
 
     static {
         try {
-            outputFile = new FileOutputStream(data,true);
+            outputFile = new FileOutputStream(data, true);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
+
     static {
         try {
             inputFile = new FileInputStream(data);
@@ -39,24 +41,27 @@ public class Duke {
             e.printStackTrace();
         }
     }
+
     protected static Scanner in = new Scanner(inputFile);
 
+    /**
+     * Read in user inputs and handle logistic.
+     */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        
+
         UI.greet();
-        
+
         line = getInput();
         while (!line.equals("bye")) {
             try {
                 if (line.equals("list")) {
                     UI.printTaskList(tasks);
-                } 
-                else if (line.startsWith("done")) {
-                    int taskCompletedId = Integer.parseInt(line.replaceAll("\\D+", "")) - 1;//get the changed task ID
+                } else if (line.startsWith("done")) {
+                    // get the changed task ID
+                    int taskCompletedId = Integer.parseInt(line.replaceAll("\\D+", "")) - 1;
                     tasks.set(taskCompletedId, tasks.get(taskCompletedId).completeTask());
                     UI.messageDone(tasks, taskCompletedId);
-                } 
-                else if (line.startsWith("todo")) {
+                } else if (line.startsWith("todo")) {
                     Todo todo = new Todo(line);
                     tasks.add(todo);
                     UI.messageTodo(tasks, todo);
@@ -76,7 +81,7 @@ public class Duke {
                     Event event = new Event(descriptionOfEvent, at);
                     tasks.add(event);
                     UI.messageEvent(tasks, event);
-                } else if (line.startsWith("delete")){
+                } else if (line.startsWith("delete")) {
                     int taskdeletedId = Integer.parseInt(line.replaceAll("\\D+", "")) - 1;
                     UI.messageDelete(tasks, taskdeletedId);
                 } else if (line.isEmpty()) {
@@ -84,21 +89,20 @@ public class Duke {
                 } else if (line.equals("save")) {
                     saveTasks(tasks, data);
                     UI.messageSaved();
-                } else if (line.startsWith("find")){
+                } else if (line.startsWith("find")) {
                     UI.messageFind(tasks, line);
-                }
-                else {
+                } else {
                     UI.messageInvalidCommand();
                 }
             } catch (StringIndexOutOfBoundsException e) {
                 UI.messageStringIndexOutOfBoundsExceptio();
             } catch (Exception e) {
                 UI.printHorizontalLine();
-                if(line.equals("todo")) {
+                if (line.equals("todo")) {
                     System.out.println("  OOPS!!! The description of a todo cannot be empty.");
-                } else if(line.equals("deadline")) {
+                } else if (line.equals("deadline")) {
                     System.out.println(" OOPS!!! The description of a deadline cannot be empty.");
-                } else if(line.equals("event")) {
+                } else if (line.equals("event")) {
                     System.out.println("  OOPS!!! The description of a event cannot be empty.");
                 } else {
                     System.out.println("  Whoops, something went wrong!");
@@ -111,44 +115,46 @@ public class Duke {
         UI.messageExit();
     }
 
-    //write tasks to the output file
+    /**
+     * write tasks to the output file.
+     */ 
     public static void saveTasks(ArrayList<Task> tasks, File data) {
         try {
-            FileWriter writer = new FileWriter(data,false); //to not overwrite the file, set to true.
+            // to not overwrite the file, set to true.
+            FileWriter writer = new FileWriter(data, false); 
             writer.write("\n");
             for (int i = 0; i < tasks.size(); i++) {
                 writer.write(tasks.get(i).toString() + "\n");
             }
-            writer.close(); 
-        }
-        catch (IOException e) {
+            writer.close();
+        } catch (IOException e) {
             UI.messageSavingError();
         }
     }
 
-    //add get input from storage file or user input line
-    public static String getInput(){
-        if(in.hasNextLine()){
+    /**
+     * add get input from storage file or user input line.
+     */ 
+    public static String getInput() {
+        if (in.hasNextLine()) {
             line = in.nextLine();
-            if (line.isEmpty()){
-                if(in.hasNextLine()){
+            if (line.isEmpty()) {
+                if (in.hasNextLine()) {
                     line = in.nextLine();
-                }
-                else {
+                } else {
                     line = sc.nextLine();
                 }
             }
-            if(line.substring(1,2).equals("T")){
+            if (line.substring(1, 2).equals("T")) {
                 line = "todo " + line.substring(7);
+            } else if (line.substring(1, 2).equals("D")) {
+                line = "deadline " + line.substring(7, (line.indexOf("("))) + "/ by"
+                        + line.substring(line.indexOf(":") + 2, line.indexOf(")"));
+            } else if (line.substring(1, 2).equals("E")) {
+                line = "event " + line.substring(7, (line.indexOf("("))) + "/ by"
+                        + line.substring(line.indexOf(":") + 2, line.indexOf(")"));
             }
-            else if(line.substring(1,2).equals("D")){
-                line = "deadline " + line.substring(7,(line.indexOf("(") )) + "/ by" + line.substring(line.indexOf(":")+2,line.indexOf(")"));
-            }
-            else if(line.substring(1,2).equals("E")){
-                line = "event " + line.substring(7,(line.indexOf("(") )) + "/ by" + line.substring(line.indexOf(":")+2,line.indexOf(")"));
-            }
-        }
-        else {
+        } else {
             line = sc.nextLine();
         }
         return line;
