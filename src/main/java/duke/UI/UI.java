@@ -93,7 +93,7 @@ public class UI {
      */
     public static void messageDelete(ArrayList<Task> tasks, int taskdeletedId) {
         printHorizontalLine();
-        System.out.println("  Noted. I've removed this task:  ");
+        System.out.println("  Noted. I will remove this task:  ");
         System.out.println("   " + tasks.get(taskdeletedId).toString());
         tasks.remove(taskdeletedId);
         System.out.println("  Now you have " + tasks.size() + " tasks in the list.");
