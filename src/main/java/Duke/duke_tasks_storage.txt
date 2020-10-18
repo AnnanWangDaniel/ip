@@ -1,0 +1,8 @@
+
+[T][✓] read book
+[T][✘] borrow book
+[E][✘] dinner (at: Sunday Evening)
+[D][✘] return book (by: Saturday)
+[T][✘] buy ticket
+[E][✘] read book (at: sunday)
+[D][✘] return home (by: 6.pm)
